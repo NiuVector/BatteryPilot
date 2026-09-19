@@ -6,7 +6,7 @@ $candidates = @(
     (Join-Path $env:LOCALAPPDATA 'Programs\Inno Setup 6\ISCC.exe')
 )
 $iscc = $candidates | Where-Object { $_ -and (Test-Path -LiteralPath $_) } | Select-Object -First 1
-if (-not $iscc) { throw 'Inno Setup 6 未安装，找不到 ISCC.exe。' }
+if (-not $iscc) { throw 'Inno Setup 6 is not installed; ISCC.exe was not found.' }
 
 & $iscc (Join-Path $PSScriptRoot 'installer\BatteryPilot.iss')
 if ($LASTEXITCODE -ne 0) { throw 'Setup build failed.' }
