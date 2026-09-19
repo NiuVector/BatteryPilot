@@ -1,0 +1,9 @@
+bin/
+obj/
+dist/
+*.user
+*.suo
+*.pfx
+*.snk
+self-test.txt
+startup-error.txt

@@ -1,0 +1,24 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  windows-build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Inno Setup
+        shell: powershell
+        run: choco install innosetup --no-progress -y
+      - name: Build application and Setup
+        shell: powershell
+        run: .\build-release.ps1
+      - name: Upload Setup
+        uses: actions/upload-artifact@v4
+        with:
+          name: BatteryPilot-Setup
+          path: dist/BatteryPilot-Setup-3.1.0-x64.exe
